@@ -1,0 +1,11 @@
+{
+  "name": "pmodcontroller",
+  "version": "1.0.0",
+  "description": "this is a node js project using express, http, socket.io, serialport to controll arduino nano every",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M.M.Rahman (musfiqpolash)",
+  "license": "ISC"
+}
