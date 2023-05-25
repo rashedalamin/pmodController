@@ -10,7 +10,13 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 var device_path='/dev/ttyArduino';
+var opsys = process.platform;
 
+if (opsys == "win32" || opsys == "win64") {
+    device_path="COM3";
+} else if (opsys == "linux") {
+    device_path='/dev/ttyArduino';
+}
 // Binding.list().then(ports => {
 //     if (opsys == "win32" || opsys == "win64") {
 //         const port = ports.find(port => /2341/i.test(port.vendorId));
@@ -39,14 +45,14 @@ app.get("/", (req, res)=>{
 io.on('connection', (socket) => {
     socket.on('toArduino', function (data) {
         console.log(data);
-        port.write( data.pin );
+        port.write( data.command );
     });
 });
 
 
 parser.on('data', function(data){
     console.log("received from arduino "+data);
-    io.emit('data',data);
+    io.emit('data',JSON.parse(data));
 });
 
 
