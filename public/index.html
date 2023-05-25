@@ -260,8 +260,8 @@
 
    
    <script>
-      const spinner = document.getElementById("spinner");
-      // timeout(1000);
+      var spinner = document.getElementById("spinner");
+      timeout(1000);
       var socket = io();
       socket.emit('toArduino', { "command":"jsonData"});
 
@@ -275,6 +275,8 @@
                 setCheckbox(key, data.pmod_data[key]);
             }
             spinner.style.display="none";
+            timeout(1000);
+
          }
       });
 
