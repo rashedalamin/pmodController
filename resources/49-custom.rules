@@ -1,0 +1,2 @@
+# U-Blox symbolic link of the driver to a customized one
+KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0058", SYMLINK="ttyArduino"
