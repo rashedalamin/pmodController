@@ -1,6 +1,6 @@
 #include <ArduinoJson.h>
 StaticJsonDocument<128> doc;
-JsonObject data = doc.createNestedObject("data");
+JsonObject pmod_data = doc.createNestedObject("pmod_data");
 String input;
 int zybo_power = 13;
 int pmod_pin1 = 2;
@@ -32,71 +32,69 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    //input=Serial.read();
     input = Serial.readStringUntil('\n');
-    // Serial.print(input);
-    // Serial.print(inp["pin1"]);
-    if (input == "pin1") {
+    
+    if (input == "pmod_pin1") {
       digitalWrite(pmod_pin1, HIGH);
       jsonData();
     }
-    if (input == "pin1_o") {
+    if (input == "pmod_pin1_o") {
       digitalWrite(pmod_pin1, LOW);
       jsonData();
     }
-    if (input == "pin2") {
+    if (input == "pmod_pin2") {
       digitalWrite(pmod_pin2, HIGH);
       jsonData();
     }
-    if (input == "pin2_o") {
+    if (input == "pmod_pin2_o") {
       digitalWrite(pmod_pin2, LOW);
       jsonData();
     }
-    if (input == "pin3") {
+    if (input == "pmod_pin3") {
       digitalWrite(pmod_pin3, HIGH);
       jsonData();
     }
-    if (input == "pin3_o") {
+    if (input == "pmod_pin3_o") {
       digitalWrite(pmod_pin3, LOW);
       jsonData();
     }
-    if (input == "pin4") {
+    if (input == "pmod_pin4") {
       digitalWrite(pmod_pin4, HIGH);
       jsonData();
     }
-    if (input == "pin4_o") {
+    if (input == "pmod_pin4_o") {
       digitalWrite(pmod_pin4, LOW);
       jsonData();
     }
-    if (input == "pin7") {
+    if (input == "pmod_pin7") {
       digitalWrite(pmod_pin7, HIGH);
       jsonData();
     }
-    if (input == "pin7_o") {
+    if (input == "pmod_pin7_o") {
       digitalWrite(pmod_pin7, LOW);
       jsonData();
     }
-    if (input == "pin8") {
+    if (input == "pmod_pin8") {
       digitalWrite(pmod_pin8, HIGH);
       jsonData();
     }
-    if (input == "pin8_o") {
+    if (input == "pmod_pin8_o") {
       digitalWrite(pmod_pin8, LOW);
       jsonData();
     }
-    if (input == "pin9") {
+    if (input == "pmod_pin9") {
       digitalWrite(pmod_pin9, HIGH);
       jsonData();
     }
-    if (input == "pin9_o") {
+    if (input == "pmod_pin9_o") {
       digitalWrite(pmod_pin9, LOW);
       jsonData();
     }
-    if (input == "pin10") {
+    if (input == "pmod_pin10") {
       digitalWrite(pmod_pin10, HIGH);
       jsonData();
     }
-    if (input == "pin10_o") {
+    if (input == "pmod_pin10_o") {
       digitalWrite(pmod_pin10, LOW);
       jsonData();
     }
@@ -120,15 +118,15 @@ void jsonData() {
   doc["time"] = 1351824120;
 
 
-  data["pin1"] = digitalRead(pmod_pin1);
-  data["pin2"] = digitalRead(pmod_pin2);
-  data["pin3"] = digitalRead(pmod_pin3);
-  data["pin4"] = digitalRead(pmod_pin4);
-  data["pin7"] = digitalRead(pmod_pin7);
-  data["pin8"] = digitalRead(pmod_pin8);
-  data["pin9"] = digitalRead(pmod_pin9);
-  data["pin10"] = digitalRead(pmod_pin10);
-  data["power"] = digitalRead(zybo_power);
+  pmod_data["pmod_pin1"] = digitalRead(pmod_pin1);
+  pmod_data["pmod_pin2"] = digitalRead(pmod_pin2);
+  pmod_data["pmod_pin3"] = digitalRead(pmod_pin3);
+  pmod_data["pmod_pin4"] = digitalRead(pmod_pin4);
+  pmod_data["pmod_pin7"] = digitalRead(pmod_pin7);
+  pmod_data["pmod_pin8"] = digitalRead(pmod_pin8);
+  pmod_data["pmod_pin9"] = digitalRead(pmod_pin9);
+  pmod_data["pmod_pin10"] = digitalRead(pmod_pin10);
+  pmod_data["power"] = digitalRead(zybo_power);
 
   serializeJson(doc, Serial);
   Serial.println();

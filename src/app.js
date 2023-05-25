@@ -20,9 +20,8 @@ const port = new SerialPort({
     flowControl: false,
 });
 const parser = port.pipe(new ReadlineParser());
-
 app.get("/", (req, res)=>{
-    res.sendFile(__dirname+'/public/index.html');
+    res.sendFile('/public/index.html' , { root: '.' });
 });
 
 io.on('connection', (socket) => {
